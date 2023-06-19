@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record id="estate_property_form" model="ir.ui.view">
+        <field name="name">estate.property.form</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <form string="Estate Property">
+                <header>
+                    <button name="action_sold" type="object" string="Sold" class="oe_highlight" />
+                    <button name="action_cancel" type="object" string="Cancel" />
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <h1>
+                                <field class="oe_inline" name="name" />
+                            </h1>
+                        </group>
+                        <newline />
+                        <div>
+                            <field class="oe_inline" name="tag_ids" widget="many2many_tags" />
+                        </div>
+                        <newline />
+
+                        <group>
+                            <field name="state" class="oe_inline" />
+                            <field name="estate_type_id" class="oe_inline" />
+                            <field name="postcode" class="oe_inline" />
+                            <field name="date_availability" class="oe_inline" />
+                        </group>
+
+                        <group>
+                            <field name="expected_price" class="oe_inline" />
+                            <field name="selling_price" class="oe_inline" />
+                            <field name="best_price" class="oe_inline" />
+                        </group>
+
+                        <notebook>
+                            <page string="Description">
+                                <group>
+                                    <field name="description" class="oe_inline" />
+                                </group>
+                                <newline />
+                                <group>
+                                    <field name="bedrooms" class="oe_inline" />
+                                </group>
+                                <newline />
+                                <group>
+                                    <field name="living_area" class="oe_inline" />
+                                </group>
+                                <newline />
+                                <group>
+                                    <field name="facades" class="oe_inline" />
+                                </group>
+                                <newline />
+                                <group>
+                                    <field name="garage" class="oe_inline" />
+                                </group>
+                                <newline />
+                                <group>
+                                    <field name="garden" class="oe_inline" />
+                                </group>
+                                <newline />
+                                <group>
+                                    <field name="garden_area" class="oe_inline" />
+                                </group>
+                                <newline />
+                                <group>
+                                    <field name="garden_orientation" class="oe_inline" />
+                                </group>
+                                <newline />
+                                <group>
+                                    <field name="total_area" class="oe_inline" />
+                                </group>
+                            </page>
+
+                            <page string="Offers">
+                                <field name="offer_ids">
+                                    <tree string="Tree String">
+                                        <field name="price" />
+                                        <field name="partner_id" />
+                                        <field name="status" />
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string="Other Info">
+                                <group>
+                                    <field name="salesman" class="oe_inline" />
+                                </group>
+                                <newline />
+                                <group>
+                                    <field name="buyer" class="oe_inline" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="estate_property_type_form" model="ir.ui.view">
+        <field name="name">estate.property.type.form</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <form string="Estate Property Types">
+                <sheet>
+                    <group>
+                        <h1>
+                            <field class="oe_inline" name="name" />
+                        </h1>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
