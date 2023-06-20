@@ -33,8 +33,8 @@
 
                         <group>
                             <field name="expected_price" class="oe_inline" />
-                            <field name="selling_price" class="oe_inline" />
                             <field name="best_price" class="oe_inline" />
+                            <field name="selling_price" class="oe_inline" />
                         </group>
 
                         <notebook>
@@ -81,6 +81,12 @@
                                     <tree string="Tree String">
                                         <field name="price" />
                                         <field name="partner_id" />
+                                        <button title="action.accept" name="action_accept"
+                                            type="object"
+                                            icon="fa-check" />
+                                        <button title="action.refuse" name="action_refuse"
+                                            type="object"
+                                            icon="fa-times" />
                                         <field name="status" />
                                     </tree>
                                 </field>

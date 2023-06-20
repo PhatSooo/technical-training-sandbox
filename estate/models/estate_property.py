@@ -7,6 +7,9 @@ from odoo.exceptions import UserError
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "Estate Property Model"
+    _sql_constraints = [('check_expected_price_positive', 'CHECK(expected_price > 0)', 'The property expected price must be strictly positive'),
+                        # ('check_selling_price_positive','CHECK(selling_price > 0)','The property selling price must be positive'),
+                        ]
 
     estate_type_id = fields.Many2one("estate.property.type", string="Property Type")
     name = fields.Char(required=True, default="Unknown", string="Title")
@@ -58,7 +61,7 @@ class EstateProperty(models.Model):
     )
 
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
-    offer_ids = fields.One2many("estate.property.offer", "property_id", string="Estate")
+    offer_ids = fields.One2many("estate.property.offer", "property_id", string="Offers")
 
     total_area = fields.Integer(compute='_compute_area', string="Total Area (sqm)")
     best_price = fields.Float(compute='_compute_best_price', string="Best Offer")
@@ -70,7 +73,9 @@ class EstateProperty(models.Model):
 
     @api.depends('offer_ids')
     def _compute_best_price(self):
-        self.best_price = max(self.offer_ids.mapped('price'))
+        if self.offer_ids:
+            self.best_price = max(self.offer_ids.mapped('price'))
+        else: self.best_price = None
 
     @api.onchange('garden')
     def _onchange_garden(self):
